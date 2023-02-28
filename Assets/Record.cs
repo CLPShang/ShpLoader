@@ -48,12 +48,12 @@ namespace Assets
             return Header.GetLength() + Contents.GetLength();
         }
 
-        public void Render(RangeXY range, Color color)
+        public void Render(RangeXY range, Color color,Vector3 offsetPos)
         {
             try
             {
                 IRenderableData renderContents = (IRenderableData)Contents;
-                renderContents.Render(range, color);
+                renderContents.Render(range, color, offsetPos);
             }
             catch (Exception e)
             {

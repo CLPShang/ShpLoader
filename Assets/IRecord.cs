@@ -22,11 +22,11 @@ namespace Assets
 
     public interface IRenderable
     {
-        void Render(Color color);
+        void Render(Color color, bool posOffset);
     }
 
     public interface IRenderableData
     {
-        void Render(RangeXY range, Color color);
+        void Render(RangeXY range, Color color,Vector3 offsetPos);
     }
 }

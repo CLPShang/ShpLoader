@@ -46,6 +46,7 @@ namespace Assets
             ZRange = new Range();
             MRange = new Range();
             TotalXYRange.Load(ref br);
+            Debug.Log("positionOffset: " + (TotalXYRange.MinX + TotalXYRange.MaxX) / 2 + "  " + (TotalXYRange.MinY + TotalXYRange.MaxY) / 2);
             ZRange.Load(ref br);
             MRange.Load(ref br);
 
@@ -77,11 +78,11 @@ namespace Assets
             return record;
         }
 
-        public void Render(Color color)
+        public void Render(Color color, bool posOffset)
         {
             foreach (ShpRecord record in RecordSet)
             {
-                record.Render(TotalXYRange, color);
+                record.Render(TotalXYRange, color, posOffset ? new Vector3((float)(TotalXYRange.MinX + TotalXYRange.MaxX) / 2, 0, (float)(TotalXYRange.MinY + TotalXYRange.MaxY) / 2) : Vector3.zero); 
             }
         }
 
@@ -184,9 +185,9 @@ namespace Assets
             }
         }
 
-        public void Render(Color color)
+        public void Render(Color color, bool posOffset)
         {
-            ContentsFile.Render(color);
+            ContentsFile.Render(color,posOffset);
         }
 
         public void Dispose()

@@ -60,6 +60,7 @@ namespace Assets
         //    return mesh;
         //}
 
+
         public static Mesh CreateMesh(Vector2[] points)
         {
             List<List<Vector2>> ptLists = splitArray(points);
@@ -97,7 +98,7 @@ namespace Assets
             Vector2 tempV2 = points[index];
             for (int i = 1; i < points.Length; i++)
             {
-                if (points[i] == tempV2)
+                if (points[i]==tempV2)
                 {
                     List<Vector2> list = new List<Vector2>();
                     for (int j = index; j < i; j++)
@@ -148,6 +149,5 @@ namespace Assets
             public int[] indices;
             public Vector3[] normals;
         }
-
     }
 }

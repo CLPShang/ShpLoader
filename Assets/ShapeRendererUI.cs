@@ -29,6 +29,7 @@ namespace Assets
         private static int dbfFileRecordCnt;
 
         private static Color shapeColor;
+        private static bool posOffset;
 
         [MenuItem("ShapeLoader/Loader")]
         private static void Init()
@@ -41,6 +42,7 @@ namespace Assets
             dbfFilePath = "";
 
             shapeColor = Color.white;
+            posOffset = false;
         }
 
         private void OnGUI()
@@ -50,7 +52,7 @@ namespace Assets
             GUILayout.ExpandWidth(false);
             
             SelectBox = new Rect(3, 0, position.width - 6, EditorGUIUtility.singleLineHeight * 4);
-            RenderBox = new Rect(3, EditorGUIUtility.singleLineHeight * 4, position.width - 6, EditorGUIUtility.singleLineHeight * 16);
+            RenderBox = new Rect(3, EditorGUIUtility.singleLineHeight * 4, position.width - 6, EditorGUIUtility.singleLineHeight * 17);
 
             #region Select Box
             GUILayout.BeginArea(SelectBox);
@@ -129,9 +131,10 @@ namespace Assets
 
             // Render Data
             shapeColor = EditorGUILayout.ColorField("Color", shapeColor, GUILayout.Height(EditorGUIUtility.singleLineHeight));
+            posOffset = EditorGUILayout.Toggle("posOffset", posOffset, GUILayout.Height(EditorGUIUtility.singleLineHeight));
             if (GUILayout.Button("Render Data"))
             {
-                RenderFiles(shapeColor);
+                RenderFiles(shapeColor, posOffset);
             }
             GUILayout.EndArea();
             #endregion
@@ -159,11 +162,11 @@ namespace Assets
             } 
         }
 
-        private void RenderFiles(Color color)
+        private void RenderFiles(Color color,bool posOffset)
         {
             try
             {
-                ((IRenderable)shapeFile).Render(color);
+                ((IRenderable)shapeFile).Render(color,posOffset);
             }
             catch (Exception e)
             {
