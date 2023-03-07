@@ -24,8 +24,10 @@ namespace Assets
 
         public void Load(ref BinaryReader br)
         {
-            char[] rawData = br.ReadChars(discriptor.FieldLength);
-            Value = new string(rawData);
+            //char[] rawData = br.ReadChars(discriptor.FieldLength);
+            //Value = new string(rawData);
+            byte[] rawData = br.ReadBytes(discriptor.FieldLength);
+            Value = System.Text.Encoding.Default.GetString(rawData);
         }
     }
 
